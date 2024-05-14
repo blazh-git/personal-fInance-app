@@ -1,9 +1,28 @@
-$main: #353156;
-$secondary: #F0F2F3;
-$accent: #029FAE;
-$overlay: rgba(0, 0, 0, 0.7);
+$main-cont: #271e53;
+$main-color: #eaeaea;
+$main-border: #2d2574;
+$accent: #45ffa2;
+$finance-window: #1b1249;
 
-$max-width: 1320px;
-.cont {
-  width: $max-width;
+$income: #82c98c;
+$expense: #e8526f;
+
+$box-shadow: 0 0 100px 0 rgba(36, 29, 112, 0.75);
+
+@mixin h-2 {
+  font-size: 25px;
+  font-weight: 600;
+  color: $main-color;
+  position: relative;
+  @content;
+}
+
+@mixin income($inc-color) {
+  background-color: $inc-color;
+  color: #000;
+  vertical-align: middle;
+  font-size: 0.5rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 10px;
 }

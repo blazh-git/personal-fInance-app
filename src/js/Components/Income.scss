@@ -1,0 +1,10 @@
+@import "src/scss/variables";
+
+//types of income
+.salary {
+  @include income(#5cd04a)
+}
+
+.salary[style="background-color: rgb(92, 208, 74);"] {
+  color: #000;
+}

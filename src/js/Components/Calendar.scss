@@ -1,0 +1,104 @@
+@import "src/scss/variables";
+
+.react-datepicker-wrapper {
+  height: 100%;
+  .react-datepicker__input-container {
+    height: inherit;
+    appearance: none!important;
+    width: 125px;
+    display: block;
+    input {
+      color: $main-color;
+      width: inherit;
+      text-align: center;
+      background-color: transparent;
+      height: 100%;
+      border: 2px solid $main-border;
+      border-radius: 1rem;
+    }
+    input:focus {
+      outline: none;
+    }
+    input::placeholder {
+      color: $main-color;
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      font-size: .9em;
+    }
+  }
+}
+
+.react-datepicker__tab-loop {
+  .react-datepicker-popper {
+    .react-datepicker__triangle {
+      display: none;
+    }
+  }
+  .calendar {
+    border: 2px solid $main-border;
+    font-size: .5rem;
+    background-color: #2d2574;
+    .react-datepicker__month-container {
+      .react-datepicker__header {
+        background-color: #1b1249;
+        border-bottom: none;
+        .react-datepicker__current-month {
+          margin-bottom: 0.5em;
+          font-size: .75rem;
+          color: $main-color;
+        }
+      }
+      .react-datepicker__day-names {
+        .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+          color: $main-color;
+          display: inline-block;
+          width: 1.25rem;
+          height: 1.25rem;
+          line-height: 1.25rem;
+          text-align: center;
+          margin: 0.166rem;
+        }
+      }
+      .react-datepicker__month {
+        .react-datepicker__week {
+          .react-datepicker__day {
+            width: 1.25rem;
+            height: 1.25rem;
+            line-height: 1.25rem;
+            color: $main-color;
+            &:hover {
+              background-color: $main-cont;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+//general
+.react-datepicker__day--keyboard-selected, .react-datepicker__month-text--keyboard-selected, .react-datepicker__quarter-text--keyboard-selected, .react-datepicker__year-text--keyboard-selected {
+  background-color: $finance-window;
+}
+
+.react-datepicker__day--selected {
+  background-color: $finance-window;
+}
+
+.react-datepicker__day--today {
+  font-weight: 800;
+}
+
+//month slider
+.react-datepicker__navigation-icon::before {
+  border-color: $main-border;
+  height: 7px;
+  width: 7px;
+  top: 9px;
+}
+
+.react-datepicker__navigation--next {
+  right: 10px;
+}
+.react-datepicker__navigation--previous {
+  left: 10px;
+}

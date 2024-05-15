@@ -1,6 +1,6 @@
 $main-cont: #271e53;
 $main-color: #eaeaea;
-$main-border: #2d2574;
+$secondary-color: #2d2574;
 $accent: #45ffa2;
 $finance-window: #1b1249;
 
@@ -17,12 +17,14 @@ $box-shadow: 0 0 100px 0 rgba(36, 29, 112, 0.75);
   @content;
 }
 
-@mixin income($inc-color) {
+@mixin in-out($inc-color) {
   background-color: $inc-color;
-  color: #000;
+  min-width: 90px;
+  color: #271e53;
   vertical-align: middle;
   font-size: 0.5rem;
   font-weight: 500;
   padding: 4px 10px;
   border-radius: 10px;
+  margin: 0 auto;
 }

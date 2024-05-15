@@ -39,4 +39,20 @@ body {
   }
 }
 
+//scrollbar
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background: $secondary-color;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: $main-color;
+}
+
 

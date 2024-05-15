@@ -13,7 +13,7 @@
       text-align: center;
       background-color: transparent;
       height: 100%;
-      border: 2px solid $main-border;
+      border: 2px solid $secondary-color;
       border-radius: 1rem;
     }
     input:focus {
@@ -35,7 +35,7 @@
     }
   }
   .calendar {
-    border: 2px solid $main-border;
+    border: 2px solid $secondary-color;
     font-size: .5rem;
     background-color: #2d2574;
     .react-datepicker__month-container {
@@ -90,7 +90,7 @@
 
 //month slider
 .react-datepicker__navigation-icon::before {
-  border-color: $main-border;
+  border-color: $secondary-color;
   height: 7px;
   width: 7px;
   top: 9px;

@@ -52,7 +52,7 @@
       background-color: transparent;
       height: 100%;
       width: 25%;
-      border: 2px solid $main-border;
+      border: 2px solid $secondary-color;
       border-radius: 1rem;
     }
     .amount::-webkit-outer-spin-button,
@@ -89,19 +89,35 @@
     margin-top: 40px;
     padding: 0 15px;
     background-color: transparent;
-    border: 2px solid $main-border;
+    border: 2px solid $secondary-color;
     border-radius: 20px;
     width: 100%;
-    height: 100%;
+    height: 550px;
+    overflow: auto;
     list-style: none;
     li {
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      grid-template-columns: 1fr 1fr 1fr 0.5fr;
+      gap: 10px;
       color: $main-color;
       border-top: 1px solid #2d2574;
       padding: 15px 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
+      span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .remove-btn {
+        margin-left: auto;
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        border: 1px solid #e71e6b;
+        background: none;
+      }
+
     }
     li:first-of-type {
       border-top: none;

@@ -9,15 +9,26 @@ function Income() {
     const [incomeDate, setIncomeDate] = useState(null);
     const [incomeList, setIncomeList] = useState([]);
 
+    //TESTING---
+    const handleAddTestIncomes = () => {
+        const testIncomes = Array.from({ length: 20 }, (_, i) => ({
+            type: `Test Income ${i + 1}`,
+            amount: Math.floor(Math.random() * 1000),
+            date: new Date().toLocaleDateString()
+        }));
+        setIncomeList([...incomeList, ...testIncomes]);
+    };
+    //------
+
     const handleAddIncome = () => {
-        if (!incomeType || !amount || !incomeDate) {
+        if (!incomeType || !amount || !incomeDate || amount < 0.01) {
             alert("Select category, enter amount, and select a date.");
             return;
         }
 
         const newIncome = {
             type: incomeType,
-            amount: parseFloat(amount),
+            amount: parseFloat(amount).toFixed(2),
             date: incomeDate.toLocaleDateString()
         };
 
@@ -32,7 +43,13 @@ function Income() {
             case "salary":
                 return "#5cd04a";
             case "freelancing":
-                return "lightgreen";
+                return "#4690ff";
+            case "dividends":
+                return "#c86cec";
+            case "gift":
+                return "#eca66c";
+            case "other":
+                return "#d3d3d3";
             default:
                 return "#2d2574"; //default color
         }
@@ -40,11 +57,15 @@ function Income() {
 
     const getFontColor = (incomeType) => {
         switch (incomeType) {
-            case "salary":
-                return "#000";
-            default:
+            case "":
                 return "#eaeaea";
+            default:
+                return "#271e53";
         }
+    };
+
+    const handleRemoveIncome = (indexToRemove) => {
+        setIncomeList(incomeList.filter((_, index) => index !== indexToRemove));
     };
 
     return (
@@ -61,12 +82,12 @@ function Income() {
                             style={{
                                 backgroundColor: getBackgroundColor(incomeType),
                                 color: getFontColor(incomeType) }}>
-                        <option value="" selected disabled>Category</option>
-                        <option value="salary" style={{ color: getFontColor("salary") }}>Salary</option>
-                        <option value="freelancing">Freelancing</option>
-                        <option value="dividends">Dividends</option>
-                        <option value="gift">Gift</option>
-                        <option value="other">Other</option>
+                        <option value="" selected disabled>category</option>
+                        <option value="salary">salary</option>
+                        <option value="freelancing">freelancing</option>
+                        <option value="dividends">dividends</option>
+                        <option value="gift">gift</option>
+                        <option value="other">other</option>
                     </select>
                 </div>
                 <input
@@ -84,6 +105,7 @@ function Income() {
                     placeholderText="Date"
                     calendarClassName="calendar"
                 />
+                <button onClick={handleAddTestIncomes}>Add 20</button>
                 <button onClick={handleAddIncome} className="add-btn"><span>+</span></button>
             </div>
             <ul className="list">
@@ -92,6 +114,7 @@ function Income() {
                         <span className={income.type}>{income.type}</span>
                         <span className="li-amount">€ {income.amount}</span>
                         <span className="li-date">{income.date}</span>
+                        <button onClick={() => handleRemoveIncome(index)} className="remove-btn"><img src="../../assets/icon-remove.svg"/></button>
                     </li>
                 ))}
             </ul>

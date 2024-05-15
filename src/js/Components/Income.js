@@ -108,16 +108,18 @@ function Income() {
                 <button onClick={handleAddTestIncomes}>Add 20</button>
                 <button onClick={handleAddIncome} className="add-btn"><span>+</span></button>
             </div>
-            <ul className="list">
-                {incomeList.map((income, index) => (
-                    <li key={index}>
-                        <span className={income.type}>{income.type}</span>
-                        <span className="li-amount">€ {income.amount}</span>
-                        <span className="li-date">{income.date}</span>
-                        <button onClick={() => handleRemoveIncome(index)} className="remove-btn"><img src="../../assets/icon-remove.svg"/></button>
-                    </li>
-                ))}
-            </ul>
+            <div className="list-cont">
+                <ul className="list">
+                    {incomeList.map((income, index) => (
+                        <li key={index}>
+                            <span className={income.type}>{income.type}</span>
+                            <span className="li-amount">€ {income.amount}</span>
+                            <span className="li-date">{income.date}</span>
+                            <button onClick={() => handleRemoveIncome(index)} className="remove-btn"><img src="../../assets/icon-remove.svg"/></button>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
     );
 }

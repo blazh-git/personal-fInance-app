@@ -6,19 +6,9 @@ import "../../scss/_variables.scss";
 function Income() {
     const [incomeType, setIncomeType] = useState("");
     const [amount, setAmount] = useState("");
+    const [description, setDescription] = useState("")
     const [incomeDate, setIncomeDate] = useState(null);
     const [incomeList, setIncomeList] = useState([]);
-
-    //TESTING---
-    const handleAddTestIncomes = () => {
-        const testIncomes = Array.from({ length: 20 }, (_, i) => ({
-            type: `Test Income ${i + 1}`,
-            amount: Math.floor(Math.random() * 1000),
-            date: new Date().toLocaleDateString()
-        }));
-        setIncomeList([...incomeList, ...testIncomes]);
-    };
-    //------
 
     const handleAddIncome = () => {
         if (!incomeType || !amount || !incomeDate || amount < 0.01) {
@@ -29,12 +19,14 @@ function Income() {
         const newIncome = {
             type: incomeType,
             amount: parseFloat(amount).toFixed(2),
+            description: description,
             date: incomeDate.toLocaleDateString()
         };
 
         setIncomeList([...incomeList, newIncome]);
         setIncomeType("");
         setAmount("");
+        setDescription("");
         setIncomeDate(null);
     };
 
@@ -51,7 +43,7 @@ function Income() {
             case "other":
                 return "#d3d3d3";
             default:
-                return "#2d2574"; //default color
+                return "#2d2574";
         }
     };
 
@@ -98,6 +90,14 @@ function Income() {
                     placeholder="Amount"
                     min="0"
                 />
+                <input
+                    className="description"
+                    type="text"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Description (optional)"
+                    maxLength="30"
+                />
                 <DatePicker
                     selected={incomeDate}
                     onChange={date => setIncomeDate(date)}
@@ -105,7 +105,6 @@ function Income() {
                     placeholderText="Date"
                     calendarClassName="calendar"
                 />
-                <button onClick={handleAddTestIncomes}>Add 20</button>
                 <button onClick={handleAddIncome} className="add-btn"><span>+</span></button>
             </div>
             <div className="list-cont">
@@ -115,6 +114,7 @@ function Income() {
                             <span className={income.type}>{income.type}</span>
                             <span className="li-amount">€ {income.amount}</span>
                             <span className="li-date">{income.date}</span>
+                            <span className="li-desc">{income.description}</span>
                             <button onClick={() => handleRemoveIncome(index)} className="remove-btn"><img src="../../assets/icon-remove.svg"/></button>
                         </li>
                     ))}

@@ -1,7 +1,5 @@
 @import "src/scss/variables";
 
-
-
 //types of income
 .salary {
   @include in-out(#5cd04a)
@@ -21,4 +19,21 @@
 
 .other {
   @include in-out(#d3d3d3)
+}
+
+//types of income/expenses
+.food {
+  @include in-out(#cec04e)
+}
+.mortgage {
+  @include in-out(#d9358c)
+}
+.insurance {
+  @include in-out(#35d9a8)
+}
+.vehicle {
+  @include in-out(#d94e35)
+}
+.phone {
+  @include in-out(#3f88c2)
 }

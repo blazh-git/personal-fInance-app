@@ -6,6 +6,7 @@ import "../../scss/_variables.scss";
 function Expenses() {
     const [expensesType, setExpensesType] = useState("");
     const [amount, setAmount] = useState("");
+    const [description, setDescription] = useState("")
     const [expensesDate, setExpensesDate] = useState(null);
     const [expensesList, setExpensesList] = useState([]);
 
@@ -18,25 +19,29 @@ function Expenses() {
         const newExpenses = {
             type: expensesType,
             amount: parseFloat(amount).toFixed(2),
+            description: description,
             date: expensesDate.toLocaleDateString()
         };
 
         setExpensesList([...expensesList, newExpenses]);
         setExpensesType("");
         setAmount("");
+        setDescription("");
         setExpensesDate(null);
     };
 
     const getBackgroundColor = (expensesType) => {
         switch (expensesType) {
-            case "salary":
-                return "#5cd04a";
-            case "freelancing":
-                return "#4690ff";
-            case "dividends":
-                return "#c86cec";
-            case "gift":
-                return "#eca66c";
+            case "food":
+                return "#cec04e";
+            case "mortgage":
+                return "#d9358c";
+            case "insurance":
+                return "#35d9a8";
+            case "vehicle":
+                return "#d94e35";
+            case "phone":
+                return "#3f88c2";
             case "other":
                 return "#d3d3d3";
             default:
@@ -72,10 +77,11 @@ function Expenses() {
                                 backgroundColor: getBackgroundColor(expensesType),
                                 color: getFontColor(expensesType) }}>
                         <option value="" selected disabled>category</option>
-                        <option value="salary">salary</option>
-                        <option value="freelancing">freelancing</option>
-                        <option value="dividends">dividends</option>
-                        <option value="gift">gift</option>
+                        <option value="food">food</option>
+                        <option value="mortgage">mortgage</option>
+                        <option value="insurance">insurance</option>
+                        <option value="vehicle">vehicle</option>
+                        <option value="phone">phone</option>
                         <option value="other">other</option>
                     </select>
                 </div>
@@ -87,6 +93,14 @@ function Expenses() {
                     placeholder="Amount"
                     min="0"
                 />
+                <input
+                    className="description"
+                    type="text"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Description (optional)"
+                    maxLength="30"
+                />
                 <DatePicker
                     selected={expensesDate}
                     onChange={date => setExpensesDate(date)}
@@ -96,16 +110,19 @@ function Expenses() {
                 />
                 <button onClick={handleAddExpenses} className="add-btn"><span>+</span></button>
             </div>
-            <ul className="list">
-                {expensesList.map((expenses, index) => (
-                    <li key={index}>
-                        <span className={expenses.type}>{expenses.type}</span>
-                        <span className="li-amount">€ {expenses.amount}</span>
-                        <span className="li-date">{expenses.date}</span>
-                        <button onClick={() => handleRemoveExpenses(index)} className="remove-btn"><img src="../../assets/icon-remove.svg"/></button>
-                    </li>
-                ))}
-            </ul>
+            <div className="list-cont">
+                <ul className="list">
+                    {expensesList.map((expenses, index) => (
+                        <li key={index}>
+                            <span className={expenses.type}>{expenses.type}</span>
+                            <span className="li-amount">€ {expenses.amount}</span>
+                            <span className="li-date">{expenses.date}</span>
+                            <span className="li-desc">{expenses.description}</span>
+                            <button onClick={() => handleRemoveExpenses(index)} className="remove-btn"><img src="../../assets/icon-remove.svg"/></button>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
     );
 }

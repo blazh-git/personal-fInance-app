@@ -1,7 +1,7 @@
 import React from "react";
 import Income from "./Income";
 
-import "./Income.scss"
+import "./In_Out.scss"
 
 const IncomeWindow = () => {
     return(<>

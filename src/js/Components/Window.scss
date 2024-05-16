@@ -51,7 +51,7 @@
       color: $main-color;
       background-color: transparent;
       height: 100%;
-      width: 25%;
+      width: 100px;
       border: 2px solid $secondary-color;
       border-radius: 1rem;
     }
@@ -71,6 +71,26 @@
     .amount:focus::placeholder {
       color: transparent;
     }
+    .description {
+      appearance: none;
+      text-align: center;
+      color: $main-color;
+      background-color: transparent;
+      height: 100%;
+      width: 180px;
+      border: 2px solid $secondary-color;
+      border-radius: 1rem;
+    }
+    .description:focus {
+      outline: none;
+    }
+    .description::placeholder {
+      color: $main-color;
+      font-family: "Roboto", sans-serif;
+      font-weight: 400;
+      font-size: .9em;
+    }
+
     .add-btn {
       margin-left: auto;
       height: 35px;
@@ -102,7 +122,7 @@
         display: grid;
         justify-content: center;
         align-items: center;
-        grid-template-columns: 1fr 1fr 1fr 0.5fr;
+        grid-template-columns: 0.5fr 1fr 0.5fr 1fr 0.25fr;
         gap: 10px;
         color: $main-color;
         border-top: 1px solid #2d2574;
@@ -124,6 +144,9 @@
       }
       li:first-of-type {
         border-top: none;
+      }
+      .li-desc {
+        font-size: 0.85em;
       }
     }
   }

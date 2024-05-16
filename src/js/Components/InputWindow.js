@@ -4,11 +4,11 @@ import Expenses from "./Expenses";
 import "./In_Out.scss"
 
 
-const Window = () => {
+const InputWindow = () => {
     return(<>
         <Income/>
         <Expenses/>
     </>)
 }
 
-export default Window;
+export default InputWindow;

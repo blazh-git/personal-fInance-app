@@ -10,9 +10,19 @@ function Income({ setTotalIncome }) {
     const [incomeDate, setIncomeDate] = useState(null);
     const [incomeList, setIncomeList] = useState([]);
 
+    //Using localStorage to store data (prevents clearing the list upon refreshing the page)
+        // Load data from localStorage when component mounts
+    useEffect(() => {
+        const storedIncomeList = localStorage.getItem("incomeList");
+        if (storedIncomeList) {
+            setIncomeList(JSON.parse(storedIncomeList));
+        }
+    }, []);
+
     useEffect(() => {
         const total = incomeList.reduce((acc, income) => acc + parseFloat(income.amount), 0);
         setTotalIncome(total);
+        localStorage.setItem("incomeList", JSON.stringify(incomeList));
     }, [incomeList, setTotalIncome]);
 
     const handleAddIncome = () => {

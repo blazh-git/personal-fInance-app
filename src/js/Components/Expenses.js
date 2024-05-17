@@ -10,9 +10,19 @@ function Expenses({ setTotalExpenses }) {
     const [expensesDate, setExpensesDate] = useState(null);
     const [expensesList, setExpensesList] = useState([]);
 
+    //Using localStorage to store data (prevents clearing the list upon refreshing the page)
+        // Load data from localStorage when component mounts
+    useEffect(() => {
+        const storedExpensesList = localStorage.getItem("expensesList");
+        if (storedExpensesList) {
+            setExpensesList(JSON.parse(storedExpensesList));
+        }
+    }, []);
+
     useEffect(() => {
         const total = expensesList.reduce((acc, expenses) => acc + parseFloat(expenses.amount), 0);
         setTotalExpenses(total);
+        localStorage.setItem("expensesList", JSON.stringify(expensesList));
     }, [expensesList, setTotalExpenses]);
 
     const handleAddExpenses = () => {

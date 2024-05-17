@@ -128,7 +128,7 @@ function Income({ setTotalIncome }) {
                 <DatePicker
                     selected={incomeDate}
                     onChange={(date) => setIncomeDate(date)}
-                    dateFormat="dd/MM/yyyy"
+                    dateFormat="dd.MM.yyyy"
                     placeholderText="Date"
                     calendarClassName="calendar"
                     id="date-inc"

@@ -3,17 +3,44 @@
 @import "../js/Components/InputWindow";
 
 html {
+  width: 100%;
+  height: 100%;
+  @media (max-width: $mobile) {
+    height: auto;
+    background-color: $main-cont;
+  }
 }
 
 body {
-  width: 100%;
+  width: inherit;
+  height: inherit;
   background-color: #110829;
+  position: absolute;
+  @media (max-width: $mobile) {
+    background-color: transparent;
+  }
+}
+
+.container {
+  width: inherit;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  @media (max-width: $mobile) {
+    width: $mobile!important;
+    height: auto!important;
+  }
 }
 
 header {
   display: flex;
   justify-content: space-between;
   gap: 35px;
+  @media (max-width: $mobile) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   .balance-cont {
     display: grid;
     justify-content: center;
@@ -22,6 +49,10 @@ header {
     gap: 35px;
     height: 100%;
     width: 50%;
+    @media (max-width: $mobile) {
+      width: 100%;
+      grid-template-columns: .75fr 1.25fr;
+    }
     .balance-column {
       width: 100%;
       background-color: $finance-window;
@@ -78,12 +109,16 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: $mobile) {
+    width: 100%;
+    height: auto;
+
+  }
   .center-cont {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 45px;
-    position: fixed;
     inset: 0;
     margin: auto;
     background-color: $main-cont;
@@ -93,13 +128,33 @@ header {
     border-radius: 20px;
     box-shadow: $box-shadow;
     text-align: center;
-    .finances {
+    @media (max-width: $mobile) {
+      justify-content: inherit;
+      position: relative;
+      height: inherit;
+      gap: 35px;
+      border: none;
+      box-shadow: none;
+    }
+      .finances {
       width: 100%;
       height: 80%;
       margin-top: 50px;
       display: flex;
       gap: 35px;
+      @media (max-width: $mobile) {
+        flex-direction: column;
+        margin-top: 0;
+        height: 100%;
+      }
     }
+    @media (max-width: $mobile) {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+
+    }
+
   }
 }
 

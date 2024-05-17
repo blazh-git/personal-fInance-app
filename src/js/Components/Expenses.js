@@ -133,7 +133,7 @@ function Expenses({ setTotalExpenses }) {
                 <DatePicker
                     selected={expensesDate}
                     onChange={(date) => setExpensesDate(date)}
-                    dateFormat="dd/MM/yyyy"
+                    dateFormat="dd.MM.yyyy"
                     placeholderText="Date"
                     calendarClassName="calendar"
                     id="date-exp"

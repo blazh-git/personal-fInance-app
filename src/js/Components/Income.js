@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../../scss/_variables.scss";
 
-function Income() {
+function Income({ setTotalIncome }) {
     const [incomeType, setIncomeType] = useState("");
     const [amount, setAmount] = useState("");
-    const [description, setDescription] = useState("")
+    const [description, setDescription] = useState("");
     const [incomeDate, setIncomeDate] = useState(null);
     const [incomeList, setIncomeList] = useState([]);
+
+    useEffect(() => {
+        const total = incomeList.reduce((acc, income) => acc + parseFloat(income.amount), 0);
+        setTotalIncome(total);
+    }, [incomeList, setTotalIncome]);
 
     const handleAddIncome = () => {
         if (!incomeType || !amount || !incomeDate || amount < 0.01) {
@@ -43,7 +48,7 @@ function Income() {
             case "other":
                 return "#d3d3d3";
             default:
-                return "#2d2574";
+                return "#2d2574"; // default color
         }
     };
 
@@ -63,18 +68,24 @@ function Income() {
     return (
         <div className="finances-cont">
             <div className="h2-cont">
-                <img src="../../assets/icon-income.svg" className="finance-icon" alt="Income icon"/>
+                <img src="../../assets/icon-income.svg" className="finance-icon" alt="Income icon" />
                 <h2 className="income">Income</h2>
             </div>
             <div className="input-cont">
                 <div className="select-cont">
-                    <select value={incomeType}
-                            className="category"
-                            onChange={(e) => setIncomeType(e.target.value)}
-                            style={{
-                                backgroundColor: getBackgroundColor(incomeType),
-                                color: getFontColor(incomeType) }}>
-                        <option value="" selected disabled>category</option>
+                    <select
+                        value={incomeType}
+                        className="category"
+                        onChange={(e) => setIncomeType(e.target.value)}
+                        style={{
+                            backgroundColor: getBackgroundColor(incomeType),
+                            color: getFontColor(incomeType)
+                        }}
+                        id="categ-inc"
+                    >
+                        <option value="" disabled>
+                            category
+                        </option>
                         <option value="salary">salary</option>
                         <option value="freelancing">freelancing</option>
                         <option value="dividends">dividends</option>
@@ -89,6 +100,7 @@ function Income() {
                     onChange={(e) => setAmount(e.target.value)}
                     placeholder="Amount"
                     min="0"
+                    id="amount-inc"
                 />
                 <input
                     className="description"
@@ -97,25 +109,31 @@ function Income() {
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Description (optional)"
                     maxLength="30"
+                    id="desc-inc"
                 />
                 <DatePicker
                     selected={incomeDate}
-                    onChange={date => setIncomeDate(date)}
+                    onChange={(date) => setIncomeDate(date)}
                     dateFormat="dd/MM/yyyy"
                     placeholderText="Date"
                     calendarClassName="calendar"
+                    id="date-inc"
                 />
-                <button onClick={handleAddIncome} className="add-btn"><span>+</span></button>
+                <button onClick={handleAddIncome} className="add-btn">
+                    <span>+</span>
+                </button>
             </div>
             <div className="list-cont">
                 <ul className="list">
                     {incomeList.map((income, index) => (
                         <li key={index}>
                             <span className={income.type}>{income.type}</span>
-                            <span className="li-amount">€ {income.amount}</span>
-                            <span className="li-date">{income.date}</span>
+                            <span className="li-amount">{income.amount} €</span>
                             <span className="li-desc">{income.description}</span>
-                            <button onClick={() => handleRemoveIncome(index)} className="remove-btn"><img src="../../assets/icon-remove.svg"/></button>
+                            <span className="li-date">{income.date}</span>
+                            <button onClick={() => handleRemoveIncome(index)} className="remove-btn">
+                                <img src="../../assets/icon-remove.svg" alt="Remove" />
+                            </button>
                         </li>
                     ))}
                 </ul>

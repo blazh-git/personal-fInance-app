@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../../scss/_variables.scss";
 
-function Expenses() {
+function Expenses({ setTotalExpenses }) {
     const [expensesType, setExpensesType] = useState("");
     const [amount, setAmount] = useState("");
-    const [description, setDescription] = useState("")
+    const [description, setDescription] = useState("");
     const [expensesDate, setExpensesDate] = useState(null);
     const [expensesList, setExpensesList] = useState([]);
+
+    useEffect(() => {
+        const total = expensesList.reduce((acc, expenses) => acc + parseFloat(expenses.amount), 0);
+        setTotalExpenses(total);
+    }, [expensesList, setTotalExpenses]);
 
     const handleAddExpenses = () => {
         if (!expensesType || !amount || !expensesDate || amount < 0.01) {
@@ -65,18 +70,24 @@ function Expenses() {
     return (
         <div className="finances-cont">
             <div className="h2-cont">
-                <img src="../../assets/icon-expense.svg" className="finance-icon" alt="Expenses icon"/>
+                <img src="../../assets/icon-expense.svg" className="finance-icon" alt="Expenses icon" />
                 <h2 className="expenses">Expenses</h2>
             </div>
             <div className="input-cont">
                 <div className="select-cont">
-                    <select value={expensesType}
-                            className="category"
-                            onChange={(e) => setExpensesType(e.target.value)}
-                            style={{
-                                backgroundColor: getBackgroundColor(expensesType),
-                                color: getFontColor(expensesType) }}>
-                        <option value="" selected disabled>category</option>
+                    <select
+                        value={expensesType}
+                        className="category"
+                        onChange={(e) => setExpensesType(e.target.value)}
+                        style={{
+                            backgroundColor: getBackgroundColor(expensesType),
+                            color: getFontColor(expensesType)
+                        }}
+                        id="categ-expenses"
+                    >
+                        <option value="" disabled>
+                            category
+                        </option>
                         <option value="food">food</option>
                         <option value="mortgage">mortgage</option>
                         <option value="insurance">insurance</option>
@@ -92,6 +103,7 @@ function Expenses() {
                     onChange={(e) => setAmount(e.target.value)}
                     placeholder="Amount"
                     min="0"
+                    id="amount-exp"
                 />
                 <input
                     className="description"
@@ -100,25 +112,31 @@ function Expenses() {
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Description (optional)"
                     maxLength="30"
+                    id="desc-exp"
                 />
                 <DatePicker
                     selected={expensesDate}
-                    onChange={date => setExpensesDate(date)}
+                    onChange={(date) => setExpensesDate(date)}
                     dateFormat="dd/MM/yyyy"
                     placeholderText="Date"
                     calendarClassName="calendar"
+                    id="date-exp"
                 />
-                <button onClick={handleAddExpenses} className="add-btn"><span>+</span></button>
+                <button onClick={handleAddExpenses} className="add-btn">
+                    <span>+</span>
+                </button>
             </div>
             <div className="list-cont">
                 <ul className="list">
                     {expensesList.map((expenses, index) => (
                         <li key={index}>
                             <span className={expenses.type}>{expenses.type}</span>
-                            <span className="li-amount">€ {expenses.amount}</span>
-                            <span className="li-date">{expenses.date}</span>
+                            <span className="li-amount">{expenses.amount} €</span>
                             <span className="li-desc">{expenses.description}</span>
-                            <button onClick={() => handleRemoveExpenses(index)} className="remove-btn"><img src="../../assets/icon-remove.svg"/></button>
+                            <span className="li-date">{expenses.date}</span>
+                            <button onClick={() => handleRemoveExpenses(index)} className="remove-btn">
+                                <img src="../../assets/icon-remove.svg" alt="Remove" />
+                            </button>
                         </li>
                     ))}
                 </ul>

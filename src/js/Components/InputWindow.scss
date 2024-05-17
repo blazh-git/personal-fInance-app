@@ -122,7 +122,7 @@
         display: grid;
         justify-content: center;
         align-items: center;
-        grid-template-columns: 0.5fr 1fr 0.5fr 1fr 0.25fr;
+        grid-template-columns: auto 1fr 0.5fr 1fr auto;
         gap: 10px;
         color: $main-color;
         border-top: 1px solid #2d2574;
@@ -137,7 +137,7 @@
           height: 25px;
           width: 25px;
           border-radius: 50%;
-          border: 1px solid #e71e6b;
+          border: 1px solid #2d2574;
           background: none;
         }
 

@@ -91,6 +91,9 @@ header {
       align-items: center;
       justify-content: center;
       gap: 10px;
+      @media (max-width: $mobile) {
+        border: 2px solid #2d2574;
+      }
       .balance {
         font-size: 30px;
         font-weight: 600;
@@ -101,6 +104,9 @@ header {
       display: flex;
       align-items: center;
       justify-content: space-around;
+      @media (max-width: $mobile) {
+        border: 2px solid #2d2574;
+      }
     }
   }
 }

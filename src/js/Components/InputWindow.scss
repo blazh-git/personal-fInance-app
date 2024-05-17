@@ -149,5 +149,14 @@
         font-size: 0.85em;
       }
     }
+    .clear-list {
+      color: $secondary-color;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      appearance: none;
+      border: none;
+      background-color: transparent;
+    }
   }
 }

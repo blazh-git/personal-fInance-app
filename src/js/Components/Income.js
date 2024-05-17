@@ -11,7 +11,6 @@ function Income({ setTotalIncome }) {
     const [incomeList, setIncomeList] = useState([]);
 
     //Using localStorage to store data (prevents clearing the list upon refreshing the page)
-        // Load data from localStorage when component mounts
     useEffect(() => {
         const storedIncomeList = localStorage.getItem("incomeList");
         if (storedIncomeList) {
@@ -74,6 +73,11 @@ function Income({ setTotalIncome }) {
     const handleRemoveIncome = (indexToRemove) => {
         setIncomeList(incomeList.filter((_, index) => index !== indexToRemove));
     };
+    //clear list function
+    const clearList = () => {
+        if (window.confirm("Are you sure you want to clear the list?")) {
+            setIncomeList([]);
+        }    };
 
     return (
         <div className="finances-cont">
@@ -147,6 +151,7 @@ function Income({ setTotalIncome }) {
                         </li>
                     ))}
                 </ul>
+                <button onClick={clearList} className="clear-list">Clear List</button>
             </div>
         </div>
     );

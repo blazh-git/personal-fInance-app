@@ -11,7 +11,6 @@ function Expenses({ setTotalExpenses }) {
     const [expensesList, setExpensesList] = useState([]);
 
     //Using localStorage to store data (prevents clearing the list upon refreshing the page)
-        // Load data from localStorage when component mounts
     useEffect(() => {
         const storedExpensesList = localStorage.getItem("expensesList");
         if (storedExpensesList) {
@@ -76,6 +75,13 @@ function Expenses({ setTotalExpenses }) {
     const handleRemoveExpenses = (indexToRemove) => {
         setExpensesList(expensesList.filter((_, index) => index !== indexToRemove));
     };
+
+    //clear list function
+    const clearList = () => {
+        if (window.confirm("Are you sure you want to clear the list?")) {
+            setExpensesList([]);
+        }    };
+
 
     return (
         <div className="finances-cont">
@@ -150,6 +156,7 @@ function Expenses({ setTotalExpenses }) {
                         </li>
                     ))}
                 </ul>
+                <button onClick={clearList} className="clear-list">Clear List</button>
             </div>
         </div>
     );

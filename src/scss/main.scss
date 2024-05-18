@@ -1,0 +1,212 @@
+@import "variables";
+@import "fonts";
+@import "../js/Components/InputWindow";
+
+html {
+  width: 100%;
+  height: 100%;
+  @media (max-width: $mobile) {
+    height: auto;
+    background-color: $main-cont;
+  }
+}
+
+body {
+  width: inherit;
+  height: inherit;
+  background-color: #110829;
+  position: absolute;
+  @media (max-width: $mobile) {
+    background-color: transparent;
+  }
+}
+
+.container {
+  width: inherit;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  @media (max-width: $mobile) {
+    width: $mobile!important;
+    height: auto!important;
+  }
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  gap: 35px;
+  @media (max-width: $mobile) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .balance-cont {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: .5fr .65fr;
+    gap: 35px;
+    height: 100%;
+    width: 50%;
+    @media (max-width: $mobile) {
+      width: 100%;
+      grid-template-columns: .75fr 1.25fr;
+    }
+    .balance-column {
+      width: 100%;
+      background-color: $finance-window;
+      color: $main-color;
+      padding: 15px;
+      border-radius: 25px;
+      .total-cont {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+        gap: 10px;
+        font-size: 14px;
+        p {
+          font-weight: 400;
+          text-align: center;
+        }
+        p:nth-of-type(2) {
+          font-size: 26px;
+          font-weight: 500;
+        }
+      }
+      .total-cont:nth-of-type(1) p:first-of-type {
+        padding-bottom: 2px;
+        border-bottom: 1px solid #4fe05a;
+      }
+      .total-cont:nth-of-type(2) p:first-of-type {
+        padding-bottom: 2px;
+        border-bottom: 1px solid #e53a34;
+      }
+    }
+    .balance-column.left {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      @media (max-width: $mobile) {
+        border: 2px solid #2d2574;
+      }
+      .balance {
+        font-size: 30px;
+        font-weight: 600;
+      }
+    }
+    .balance-column.right {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      @media (max-width: $mobile) {
+        border: 2px solid #2d2574;
+      }
+    }
+  }
+}
+
+.main-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: $mobile) {
+    width: 100%;
+    height: auto;
+
+  }
+  .center-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 45px;
+    inset: 0;
+    margin: auto;
+    background-color: $main-cont;
+    height: 970px;
+    width: 1500px;
+    border: 2px solid #2d2574;
+    border-radius: 20px;
+    box-shadow: $box-shadow;
+    text-align: center;
+    @media (max-width: $mobile) {
+      justify-content: inherit;
+      position: relative;
+      height: inherit;
+      margin-bottom: 60px;
+      gap: 35px;
+      border: none;
+      box-shadow: none;
+    }
+      .finances {
+      width: 100%;
+      height: 80%;
+      margin-top: 50px;
+      display: flex;
+      gap: 35px;
+      @media (max-width: $mobile) {
+        flex-direction: column;
+        margin-top: 0;
+        height: 100%;
+      }
+    }
+    @media (max-width: $mobile) {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+
+    }
+
+  }
+}
+
+//scrollbar
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background: $finance-window;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: $secondary-color;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  padding-bottom: 20px;
+  @media (max-width: $mobile) {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 0;
+  }
+  .copyright {
+    color: $secondary-color;
+    font-size: 16px;
+    font-weight: 400;
+    a {
+      font-weight: 200;
+      text-decoration: none;
+      color: $accent;
+    }
+    @media (max-width: $mobile) {
+      background-color: #110829;
+      padding: 20px 0;
+      color: $secondary-color;
+      font-weight: 400;
+    }
+  }
+}
+

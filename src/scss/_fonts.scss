@@ -1,0 +1,58 @@
+@import "variables";
+
+:root {
+  font-size: 25px;
+}
+
+* {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 1em;
+}
+
+h1 {
+  width: 50%;
+  color: $main-color;
+  text-align: left;
+  font-size: 2em;
+  line-height: 1;
+  font-weight: 100;
+  @media (max-width: $mobile) {
+    text-align: center;
+    width: 100%;
+
+  }
+}
+
+h3 {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.income {
+  @include h-2;
+}
+.expenses {
+  @include h-2;
+}
+
+.category {
+  width: 92px;
+  font-size: 0.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.special {
+  font-family: "Paytone One", sans-serif;
+  color: $accent;
+  font-size: 1.25em;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+footer {
+
+}

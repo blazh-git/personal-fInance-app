@@ -6,7 +6,7 @@ import Expenses from "./Components/Expenses";
 const App = () => {
     const [totalIncome, setTotalIncome] = useState(0);
     const [totalExpenses, setTotalExpenses] = useState(0);
-    return(
+    return(<>
         <div className="main-cont">
             <div className="center-cont">
                 <header>
@@ -19,7 +19,10 @@ const App = () => {
                 </div>
             </div>
         </div>
-    )
+        <footer>
+            <p className="copyright">Developed and designed by <a href="https://github.com/blazh-git" target="_blank">blazh</a></p>
+        </footer>
+    </>)
 }
 
 export default App;

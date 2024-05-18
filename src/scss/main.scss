@@ -25,7 +25,10 @@ body {
   width: inherit;
   height: inherit;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  position: relative;
   @media (max-width: $mobile) {
     width: $mobile!important;
     height: auto!important;
@@ -138,6 +141,7 @@ header {
       justify-content: inherit;
       position: relative;
       height: inherit;
+      margin-bottom: 60px;
       gap: 35px;
       border: none;
       box-shadow: none;
@@ -165,7 +169,6 @@ header {
 }
 
 //scrollbar
-
 ::-webkit-scrollbar {
   width: 9px;
 }
@@ -180,4 +183,30 @@ header {
   background: $secondary-color;
 }
 
+footer {
+  position: absolute;
+  bottom: 0;
+  padding-bottom: 20px;
+  @media (max-width: $mobile) {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 0;
+  }
+  .copyright {
+    color: $secondary-color;
+    font-size: 16px;
+    font-weight: 400;
+    a {
+      font-weight: 200;
+      text-decoration: none;
+      color: $accent;
+    }
+    @media (max-width: $mobile) {
+      background-color: #110829;
+      padding: 20px 0;
+      color: $secondary-color;
+      font-weight: 400;
+    }
+  }
+}
 
